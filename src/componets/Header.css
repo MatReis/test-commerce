@@ -15,13 +15,6 @@
 	--header-bg: #fff;
 }
 
-.responsive-wrapper {
-	width: 90%;
-	max-width: 1280px;
-	margin-left: auto;
-	margin-right: auto;
-}
-
 /* Sticky header */
 .header-outer {
 	/* Make it stick */

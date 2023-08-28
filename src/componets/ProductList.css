@@ -1,0 +1,7 @@
+
+.list-products {
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
+    grid-row-gap: 5ch;
+    justify-content: space-around;
+}

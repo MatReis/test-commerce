@@ -1,0 +1,93 @@
+.card {
+    display: grid;
+    grid-template-rows: 55% 35% 10%;
+    
+    width: 35ch;
+    min-height: 45ch;
+    
+    align-self: center;
+    justify-self: center;
+
+    border: 1px solid #000;
+    border-radius: 12px;
+    box-shadow: 5px 5px 8px 0px #000;
+    padding-bottom: 0.8ch;
+    overflow: hidden;
+}
+
+.image {
+    border-radius: 12px 12px 0 0;
+}
+
+.image img {
+    max-width:100%;
+    max-height:100%;
+    width: auto;
+    height: auto;
+}
+
+.description {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 50% 50%;
+    justify-items: stretch;
+}
+
+.description .info {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    /* grid-template-rows: 100%; */
+    
+    align-self: center;
+    justify-items: stretch;
+    font-size: 0.8em;
+}
+
+.info-title span{
+    font-size: 1em;
+    font-weight: 100px;
+    justify-content: stretch;
+    overflow: hidden;
+}
+
+.description .info .info-price {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    max-height: 100%;
+    justify-items: stretch;
+}
+
+.description .info .info-price span {
+    /* align-self: center; */
+    /* justify-self: stretch; */
+    font-size: 0.9rem;
+}
+
+.description .subinfo {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    overflow: hidden;
+}
+
+.description .subinfo label {
+    align-self: center;
+    justify-self: center;
+}
+
+.description .subinfo :nth-child(3) {
+    grid-area: 2 / 1 / 3 / 3;
+}
+
+.actions {
+    display: grid;
+    grid-template-columns: 1fr 0.2fr;
+    /* background-color: aqua; */
+    padding: 0% 3%;
+    max-width: 100%;
+    align-items: center;
+}
+
+.favorite-color {
+    color: red;
+}

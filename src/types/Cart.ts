@@ -1,7 +1,10 @@
 import { Product } from "./Product";
 
 export interface Cart {
-    items: CartItem[];
+    cartItems: CartItem[];
+    addToCart: (product: Product) => void;
+    removeFromCart: (productId: number) => void;
+    updateQuantity: (productId: number, quantity: number) => void;
 }
 
 export interface CartItem {
