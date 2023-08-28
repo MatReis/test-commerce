@@ -15,7 +15,6 @@ const ProductsPage: React.FC = () => {
                 console.error('Erro ao buscar produtos:', error);
             }
         }
-        console.log("call");
 
         fetchProducts();
     }, []);

@@ -1,30 +1,37 @@
-import { Product } from "../types/Product";
-import './Card.css'
-import { formatCurrency } from "../utils/utils";
+import React from 'react';
 import { Button } from '@mui/material';
 import { AddShoppingCart, FavoriteOutlined, FavoriteBorderOutlined } from '@mui/icons-material';
-import { useFavorites } from '../contexts/FavoritesContext'; 
+import { Link } from 'react-router-dom';
+
+import './Card.css'
+import { formatCurrency } from "../utils/utils";
+import { Product } from "../types/Product";
+import { useFavorites } from '../contexts/FavoritesContext';
+import { useCart } from "../contexts/CartContext";
+
 
 interface CardProps {
     product: Product;
 }
 
 const Card: React.FC<CardProps> = ({ product }) => {
-    const { title, price, discountPercentage, brand, rating, stock, images} = product;
+    const {id, title, price, discountPercentage, brand, rating, stock, images} = product;
     const realPrice: number = price - ((price/100) * discountPercentage);
     
     const { addFavorite, removeFavorite, isFavorite } = useFavorites();
+
+    const { addToCart } = useCart();
 
     return (
         <>
             <div className="card">
                 <div className="image">
-                    <img src={images[0]} />
+                    <img src={images[0]} alt="imagem do produto" />
                 </div>
                 <div className="description">
                     <div className="info">
                         <div className="info-title">
-                            <h2>{title}</h2>
+                            <Link to={`/produto/${id}`} >{title}</Link>
                         </div>
                         <div className="info-price">
                             <span><s>{formatCurrency(price)}</s></span>
@@ -43,7 +50,7 @@ const Card: React.FC<CardProps> = ({ product }) => {
                         variant="contained"
                         color="primary"
                         startIcon={<AddShoppingCart />}
-                        // onClick={handleAddClick}
+                        onClick={() => addToCart(product)}
                         >
                         Adicionar ao Carrinho
                     </Button>
