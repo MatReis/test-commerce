@@ -1,7 +1,9 @@
 import React from 'react';
 
 import { useCart } from '../contexts/CartContext';
-import '../utils/utils'
+import '../utils/Utils.css'
+import CartItemTable from '../componets/CartItemTable';
+import './CartPage.css'
 
 
 const CartPage: React.FC = () => {
@@ -12,21 +14,24 @@ const CartPage: React.FC = () => {
       <div className='title'>
         <h1>Carrinho</h1>
       </div>
-      <div className='table'>
-        <div className='table-header'>
-          <span>Produto</span>
-          <span>Descricao</span>
-          <span>Quantidade</span>
-          <span>Valor Unidade</span>
-          <span>Valor total</span>
+      <div className='cart responsive-wrapper'>
+        <div className='table-grid'>
+          <div className='table-grid-header' >
+            <div>Preview</div>
+            <div>Produto</div>
+            <div>Quantidade</div>
+            <div>Valor Unidade</div>
+            <div>Valor Total</div>
+          </div>
+          {cartItems.map(item => (
+            <CartItemTable product={item.product} quantity={item.quantity} />
+          ))}
         </div>
-        <div className='table-content'>
-
+        <div className='cart-resume'>
+            <span> Total Produtos: </span> <span> RS 5555,55</span> 
+            <span> Desconto: </span> <span> RS 5555,55</span> 
+            <span> Total Compra:  </span> <span> RS 5555,55</span> 
         </div>
-
-        {cartItems.map( item => (
-          <div>{item.product.title}</div>
-        ))}
       </div>
     </>
   );

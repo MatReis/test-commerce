@@ -15,7 +15,7 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ product }) => {
-    const {id, title, price, discountPercentage, brand, rating, stock, images} = product;
+    const {id, title, price, discountPercentage, brand, rating, stock, thumbnail} = product;
     const realPrice: number = price - ((price/100) * discountPercentage);
     
     const { addFavorite, removeFavorite, isFavorite } = useFavorites();
@@ -26,7 +26,7 @@ const Card: React.FC<CardProps> = ({ product }) => {
         <>
             <div className="card">
                 <div className="image">
-                    <img src={images[0]} alt="imagem do produto" />
+                    <img src={thumbnail} alt="imagem do produto" />
                 </div>
                 <div className="description">
                     <div className="info">
