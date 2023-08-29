@@ -45,7 +45,6 @@ const Card: React.FC<CardProps> = ({ product }) => {
                     </div>
                 </div>
                 <div className="actions">
-                    {/* <a className="Details" href={'/detalhes/'+id} > Ver mais </a> */}
                     <Button
                         variant="contained"
                         color="primary"
@@ -54,7 +53,6 @@ const Card: React.FC<CardProps> = ({ product }) => {
                         >
                         Adicionar ao Carrinho
                     </Button>
-                    {/* <a className="addToCart">Adiconar ao carrinho</a> */}
                     {isFavorite(product.id) ? (
                         <Button
                             startIcon={<FavoriteOutlined className="favorite-color" />} 
