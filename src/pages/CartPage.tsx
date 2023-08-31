@@ -4,6 +4,7 @@ import { useCart } from '../contexts/CartContext';
 import '../utils/Utils.css'
 import CartItemTable from '../componets/CartItemTable';
 import './CartPage.css'
+import { formatCurrency } from "../utils/utils";
 
 
 const CartPage: React.FC = () => {
@@ -12,6 +13,10 @@ const CartPage: React.FC = () => {
   if (cartItems.length === 0) {
     return <h3>Ops! Carrinho ainda esta vazio!</h3>
   }
+
+  const productsValue: number = cartItems.reduce((total, item) => total + ((item.product.price - ((item.product.price/100) * item.product.discountPercentage)) * item.quantity ) , 0 ) 
+  const discountValue: number = cartItems.reduce((total, item) => total + (((item.product.price/100) * item.product.discountPercentage) * item.quantity ), 0 ) 
+  const cartValue: number = productsValue - discountValue;
 
   return (
     <div className='responsive-wrapper'>
@@ -34,9 +39,9 @@ const CartPage: React.FC = () => {
           ))}
         </div>
         <div className='cart-resume'>
-            <span> Total Produtos: </span> <span> RS 5555,55</span> 
-            <span> Desconto: </span> <span> RS 5555,55</span> 
-            <span> Total Compra:  </span> <span> RS 5555,55</span> 
+            <span>Total Produtos:</span> <span>{formatCurrency(productsValue)} </span> 
+            <span>Desconto:</span> <span>{formatCurrency(discountValue)}</span> 
+            <span>Total Compra:</span> <span>{formatCurrency(cartValue)}</span> 
         </div>
       </div>
     </div>

@@ -7,14 +7,15 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 import { CartItem } from "../types/Cart";
 import { formatCurrency } from "../utils/utils";
-// import { updateQuantity, removeFromCart } from "../contexts/CartContext"
+import { useCart } from "../contexts/CartContext"
+import { Product } from "../types/Product";
 
 interface divImageProps {
     divImageUrl: string
 }
 
 const CartItemTable: React.FC<CartItem>= ({ product, quantity }) => {
-    const { price, title, discountPercentage, thumbnail} = product
+    const { id, price, title, discountPercentage, thumbnail} = product
     const realPrice: number = price - ((price/100) * discountPercentage);
     const sumValue: number = realPrice * quantity;
 
@@ -27,6 +28,12 @@ const CartItemTable: React.FC<CartItem>= ({ product, quantity }) => {
         height: 100%;
     `;
 
+    const {updateQuantity, removeFromCart } = useCart();
+
+    const handlerRemove = (id: number) => {
+        removeFromCart(id)
+    }
+
     return (
         <div className="table-grid-content">
             <div className="table-row">
@@ -37,16 +44,26 @@ const CartItemTable: React.FC<CartItem>= ({ product, quantity }) => {
                 <div>{title}</div>
                 <div>
                     <div>
-                        <IconButton aria-label="Remover 1" size="small" ><RemoveIcon /></IconButton >
+                        <IconButton 
+                            aria-label="Remover 1" 
+                            size="small" 
+                            onClick={ () => updateQuantity( id, (quantity - 1) ) }
+                        >
+                            <RemoveIcon />
+                        </IconButton >
                         <span>{quantity}</span>
-                        <IconButton aria-label="Adicionar" size="small"  ><AddIcon /></IconButton >
+                        <IconButton 
+                            aria-label="Adicionar" 
+                            size="small"  
+                            onClick={ () => updateQuantity( id, (quantity + 1) ) }
+                        ><AddIcon /></IconButton >
                     </div>
                     <div>
                         <Button
-                            variant="contained"
-                            color="primary" 
+                            variant="outlined"
+                            color="error" 
                             startIcon={<DeleteIcon />}
-                            onClick={ () => console.log("delete") }
+                            onClick={ () => handlerRemove(id) }
                         >
                             Remove
                         </Button>

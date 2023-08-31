@@ -46,7 +46,7 @@ const Card: React.FC<CardProps> = ({ product }) => {
                 </div>
                 <div className="actions">
                     <Button
-                        variant="contained"
+                        variant="outlined"
                         color="primary"
                         startIcon={<AddShoppingCart />}
                         onClick={() => addToCart(product)}
